@@ -31,13 +31,13 @@ DEFINE_EXECUTE_AT_END(vol_ave_var)
 	
 	real c_x[ND_ND] = {0.0,0.0,0.0};	
 
-    real c_var = 0.0;
+	real c_var = 0.0;
 	real c_vol = 0.0;
 	
 	var = 0.0;
 	vol = 0.0;
 
-    domain = Get_Domain(1);
+	domain = Get_Domain(1);
 
 	#if !RP_HOST	/* serial or node; excluding host */
 	
