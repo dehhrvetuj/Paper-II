@@ -24,10 +24,10 @@ int Weight(const real x[ND_ND], const real pos[ND_ND]);
 
 DEFINE_EXECUTE_AT_END(vol_ave_var)
 {
-    face_t f;
- 	cell_t c;
+	face_t f;
+	cell_t c;
 	Thread *t;
-    Domain *domain;
+	Domain *domain;
 	
 	real c_x[ND_ND] = {0.0,0.0,0.0};	
 
