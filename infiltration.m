@@ -2,34 +2,48 @@ clc
 clear all
 % close all
 
-data = importdata('plane-1-9500');
+% LOAD SAMPLE-PLANE DATA
+data = importdata('plane-1-0110');
 data = data.data;
 data = data(:,2:end);
 
+% X-Y-Z COORDINATES
 x = data(:,1);
 y = data(:,2);
 z = data(:,3);
 
-N = (0+(5+6+5)+0)/0.01/10 - 0;
-N0 = 9500;
+% STARTING TIMESTEP: N0
+% TOTAL NUM OF TIMESTEPS: N
+N0 = 0110;
+N = 199 ;
 
+% AREA OF DOOR
 A = 0.03^2;
 
-u = zeros(length(z),N);
+
+% CONSTRUCT MESH GRID
+[yq,zq] = meshgrid(4.125:0.03:5.625,0:0.03:2.1);
+
+% TIME AND X-VELOCITY
+u = zeros(length((yq(:))),N);
 t = zeros(N,1);
 
+%
 for i=1:N
-
-    file = sprintf('plane-1-%d',(N0+i*10)); 
+    
+    j=i-1;
+    
+    file = sprintf('plane-1-%04d',(N0+j*10)); 
     
     data = importdata(file);
     data = data.data;
     data = data(:,2:end);
     
-    u(:,i) = data(:,4);
+    uq = griddata(data(:,2),data(:,3),data(:,4),yq,zq,'nearest');
+    
+    u(:,i) = uq(:);
     t(i) = i*0.1;
 end
-
 
 u_in = u;
 u_out = u;
@@ -47,9 +61,9 @@ sum(V_in)*0.1
 sum(V_out)*0.1
 sum(V_out-V_in)*0.1
 
-figure
-plot(t,V_in,'b')
+% figure
+plot(t,V_in,'b--')
 grid on
 hold on
-plot(t,V_out,'r')
-plot(t,V_out-V_in,'sk')
+plot(t,V_out,'r--')
+plot(t,V_out-V_in,'ok')
