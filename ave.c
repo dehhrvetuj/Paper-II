@@ -11,13 +11,13 @@
 /*********************************************************************
 	This UDF can be used for parallel run.
 	NOTE: '%e' should be used instead of '%f' 
-	at Line 62 if DPM concentration is to be output. 
+	at Line 74 if DPM concentration is to be output. 
 *********************************************************************/
  
 static real var = 0.0;
 static real vol = 0.0;
 
-static const real SIZE[ND_ND] = {0.3,0.3,0.3};
+static const real SIZE[ND_ND] = {0.4,0.6,0.4};
 static const real POS[ND_ND] = {3.50,4.46,1.2};
 
 int Weight(const real x[ND_ND], const real pos[ND_ND]);
