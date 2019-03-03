@@ -74,9 +74,18 @@ sum(V_in)*dt
 sum(V_out)*dt
 sum(V_out+V_in)*dt
 
-figure
+figure(1)
 plot(t,V_in,'b--')
 grid on
 hold on
 plot(t,V_out,'r--')
 plot(t,V_out+V_in,'.k')
+
+figure(2)
+plot(t,-1*V_in,'LineStyle','--','LineWidth',1.0)
+grid on
+hold on
+axis([0 20 0 0.3])
+
+
+legend(' 5 Pa (summer)','10 Pa (summer)','15 Pa (summer)','10% (summer)','20% (summer)','30% (summer)',' 5 Pa (winter)','10 Pa (winter)','15 Pa (winter)','10% (winter)','20% (winter)','30% (winter)')
