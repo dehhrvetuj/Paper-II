@@ -4,20 +4,16 @@ clc
 clear all
 close all
 
-data1_A = importdata('./summer/case5/data.dat');
-data1_B = importdata('./summer/P10/data.dat');
-data1_C = importdata('./summer/P20/data.dat');
-data1_D = importdata('./summer/P30/data.dat');
+data1_05 = importdata('./summer/case5/data.dat');
+data1_10 = importdata('./summer/case10/data.dat');
+data1_15 = importdata('./summer/case15/data.dat');
 
-data2_A = importdata('./winter/case5/data.dat');
-data2_B = importdata('./winter/P10/data.dat');
-data2_C = importdata('./winter/P20/data.dat');
-data2_D = importdata('./winter/P30/data.dat');
+data2_05 = importdata('./winter/case5/data.dat');
+data2_10 = importdata('./winter/case10/data.dat');
+data2_15 = importdata('./winter/case15/data.dat');
 
-I = 10:10:2100;
-
-t1 = data1_A(I,2);
-t2 = data2_A(I,2);
+t1 = data1_05(10:10:end,2);
+t2 = data2_05(10:10:end,2);
 
 t1 = t1 - 741;
 t2 = t2- 601;
@@ -25,27 +21,23 @@ t2 = t2- 601;
 scale1 = 180/8.3e-11;
 scale2 = 180/8.2e-11;
 
-dpm1_A = data1_A(I,14)*scale1;
-dpm1_B = data1_B(I,14)*scale1;
-dpm1_C = data1_C(I,14)*scale1;
-dpm1_D = data1_D(I,14)*scale1;
+dpm1_05 = data1_05(10:10:end,14)*scale1;
+dpm1_10 = data1_10(10:10:end,14)*scale1;
+dpm1_15 = data1_15(10:10:end,14)*scale1;
 
-dpm2_A = data2_A(I,14)*scale2;
-dpm2_B = data2_B(I,14)*scale2;
-dpm2_C = data2_C(I,14)*scale2;
-dpm2_D = data2_D(I,14)*scale2;
+dpm2_05 = data2_05(10:10:end,14)*scale2;
+dpm2_10 = data2_10(10:10:end,14)*scale2;
+dpm2_15 = data2_15(10:10:end,14)*scale2;
 
 % MEDIAN FILTERING
 order = 5;
-dpm1_A = medfilt1(dpm1_A,order);
-dpm1_B = medfilt1(dpm1_B,order);
-dpm1_C = medfilt1(dpm1_C,order);
-dpm1_D = medfilt1(dpm1_D,order);
+dpm1_05 = medfilt1(dpm1_05,order);
+dpm1_10 = medfilt1(dpm1_10,order);
+dpm1_15 = medfilt1(dpm1_15,order);
 
-dpm2_A = medfilt1(dpm2_A,order);
-dpm2_B = medfilt1(dpm2_B,order);
-dpm2_C = medfilt1(dpm2_C,order);
-dpm2_D = medfilt1(dpm2_D,order);
+dpm2_05 = medfilt1(dpm2_05,order);
+dpm2_10 = medfilt1(dpm2_10,order);
+dpm2_15 = medfilt1(dpm2_15,order);
 
 
 
@@ -59,15 +51,13 @@ figure(1)
 hold on
 box on
 
-plot(t1,dpm1_A,'LineStyle','-','LineWidth',linewidth-1,'Color','r');
-plot(t1,dpm1_B,'LineStyle','-','LineWidth',linewidth-1,'Color','b');
-plot(t1,dpm1_C,'LineStyle','-','LineWidth',linewidth-1,'Color','g');
-plot(t1,dpm1_D,'LineStyle','-','LineWidth',linewidth-1,'Color','c');
+plot(t1,dpm1_05,'LineStyle','-','LineWidth',linewidth-1,'Color','r');
+plot(t1,dpm1_10,'LineStyle','-','LineWidth',linewidth-1,'Color','b');
+plot(t1,dpm1_15,'LineStyle','-','LineWidth',linewidth-1,'Color','g');
 
-plot(t2,dpm2_A,'LineStyle','--','LineWidth',linewidth-1,'Color','r');
-plot(t2,dpm2_B,'LineStyle','--','LineWidth',linewidth-1,'Color','b');
-plot(t2,dpm2_C,'LineStyle','--','LineWidth',linewidth-1,'Color','g');
-plot(t2,dpm2_D,'LineStyle','--','LineWidth',linewidth-1,'Color','c');
+plot(t2,dpm2_05,'LineStyle','--','LineWidth',linewidth-1,'Color','r');
+plot(t2,dpm2_10,'LineStyle','--','LineWidth',linewidth-1,'Color','b');
+plot(t2,dpm2_15,'LineStyle','--','LineWidth',linewidth-1,'Color','g');
 
 
 % SET PLOT LINE WIDTH AND FONT SIZE
