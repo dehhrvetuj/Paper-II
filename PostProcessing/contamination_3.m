@@ -22,7 +22,8 @@ t2 = data2_A(I,2);
 t1 = t1 - 741;
 t2 = t2- 601;
 
-scale1 = 180/8.3e-11;
+% SCALE DPM CONCENTRATION
+scale1 = 180/8.3e-11;       % 180 CFU/m^3 / 8.3e-11 kg/m^3
 scale2 = 180/8.2e-11;
 
 dpm1_A = data1_A(I,14)*scale1;
@@ -95,11 +96,11 @@ axs.YRuler.MinorTick = 0:0.1:2.5;
     'A-5 (winter)','B-5 (winter)','C-5 (winter)','D-5 (winter)'},'Location','northwest','FontSize',fontsize-5);
 set(leg,'LineWidth',(linewidth/2-0.1));
 for i=1:8
-    objects(i).Position(1) = 0.40;
-    objects(i*2+8-1).XData(2) = 0.36;
+    objects(i).Position(1) = 0.385;
+    objects(i*2+8-1).XData(2) = 0.345;
 end
 
-leg.Position(3) = 0.28;
+leg.Position(3) = 0.275;
 
 % SET GRID LINE PROPERTIES
 grid on

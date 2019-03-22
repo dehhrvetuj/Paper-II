@@ -18,8 +18,11 @@ p1 = data1(:,9);
 p2 = data2(:,9);
 
 
-dpm1 = data1(:,14)/8.3e-11*180;
-dpm2 = data2(:,14)/8.2e-11*180;
+% SCALE DPM CONCENTRATION
+scale1 = 180/8.3e-11;       % 180 CFU/m^3 / 8.3e-11 kg/m^3
+scale2 = 180/8.2e-11;
+dpm1 = data1(:,14)*scale1;
+dpm2 = data2(:,14)*scale2;
 
 
 % DEFINE PLOT PROPERTIES 

@@ -18,7 +18,8 @@ t2 = data2_05(10:10:end,2);
 t1 = t1 - 741;
 t2 = t2- 601;
 
-scale1 = 180/8.3e-11;
+% SCALE DPM CONCENTRATION
+scale1 = 180/8.3e-11;       % 180 CFU/m^3 / 8.3e-11 kg/m^3
 scale2 = 180/8.2e-11;
 
 dpm1_05 = data1_05(10:10:end,14)*scale1;
@@ -82,14 +83,14 @@ axs.YRuler.MinorTick = 0:0.1:2.5;
 
 % SET LEGEND
 [leg,objects] = legend({'A-5   (summer)', 'A-10 (summer)','A-15 (summer)','A-5   (winter)', 'A-10 (winter)','A-15 (winter)'}, ... 
-    'Location','best','FontSize',fontsize-4);
+    'Location','northwest','FontSize',fontsize-5);
 set(leg,'LineWidth',(linewidth/2-0.1));
 for i=1:6
-    objects(i).Position(1) = 0.36;
+    objects(i).Position(1) = 0.37;
     objects(i*2+6-1).XData(2) = 0.33;
 end
 
-leg.Position(3) = 0.31;
+leg.Position(3) = 0.29;
 
 % SET GRID LINE PROPERTIES
 grid on
