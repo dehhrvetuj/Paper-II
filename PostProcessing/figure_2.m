@@ -1,34 +1,44 @@
-clc
-clear all
-close all
+% clc
+% clear all
+% close all
+% 
+% set(0,'defaultAxesFontName', 'Garamond')
+% set(0,'defaultTextFontName', 'Garamond')
+% 
+% row = 313:909;
+% col = 82:2075;
+% 
+% gap_h = 200;    % horizontal gap
+% gap_v = 250;    % vertical gap
+% 
 
-set(0,'defaultAxesFontName', 'Garamond')
-set(0,'defaultTextFontName', 'Garamond')
-
-row = 313:909;
-col = 82:2075;
-
-gap_h = 200;    % horizontal gap
-gap_v = 250;    % vertical gap
-
-A = cell(3,2);
-
-
-X = imread('./T-A-05-summer.png'); A{1,1} = X(row,col,:);
-X = imread('./T-A-05-winter.png'); A{1,2} = X(row,col,:);
-X = imread('./T-A-10-summer.png'); A{2,1} = X(row,col,:);
-X = imread('./T-A-10-winter.png'); A{2,2} = X(row,col,:);
-X = imread('./T-A-15-summer.png'); A{3,1} = X(row,col,:);
-X = imread('./T-A-15-winter.png'); A{3,2} = X(row,col,:);
+% split the figure inot 4X2 subfigures
+ii = 3; jj = 2;
+A = cell(ii,jj);
 
 
-figure
-subplot(3,2,1), imshow(A{1,1});
-subplot(3,2,2), imshow(A{1,2});
-subplot(3,2,3), imshow(A{2,1});
-subplot(3,2,4), imshow(A{2,2});
-subplot(3,2,5), imshow(A{3,1});
-subplot(3,2,6), imshow(A{3,2});
+% X = imread('./T-A-05-summer.png'); A{1,1} = X(row,col,:);
+% X = imread('./T-A-05-winter.png'); A{1,2} = X(row,col,:);
+% X = imread('./T-A-10-summer.png'); A{2,1} = X(row,col,:);
+% X = imread('./T-A-10-winter.png'); A{2,2} = X(row,col,:);
+% X = imread('./T-A-15-summer.png'); A{3,1} = X(row,col,:);
+% X = imread('./T-A-15-winter.png'); A{3,2} = X(row,col,:);
+
+
+X = imread('./C-A-05-summer.png'); A{1,1} = X(row,col,:);
+X = imread('./C-A-05-winter.png'); A{1,2} = X(row,col,:);
+X = imread('./C-A-10-summer.png'); A{2,1} = X(row,col,:);
+X = imread('./C-A-10-winter.png'); A{2,2} = X(row,col,:);
+X = imread('./C-A-15-summer.png'); A{3,1} = X(row,col,:);
+X = imread('./C-A-15-winter.png'); A{3,2} = X(row,col,:);
+
+% figure
+% subplot(3,2,1), imshow(A{1,1});
+% subplot(3,2,2), imshow(A{1,2});
+% subplot(3,2,3), imshow(A{2,1});
+% subplot(3,2,4), imshow(A{2,2});
+% subplot(3,2,5), imshow(A{3,1});
+% subplot(3,2,6), imshow(A{3,2});
 
 
 M(:,:,1) = ones(length(row),gap_h)*255;
@@ -53,65 +63,12 @@ B = [N                      ;
 
 % set start pos for text 
 pos = [gap_h-5, gap_v-100];
-fontsize = 72;
+
 
 B = insertText(B,(pos+[0,0]),'a) P=5 Pa','FontSize',fontsize,'BoxOpacity',0);
 B = insertText(B,(pos+[0,(gap_v+length(row))*1]),'b) P=10 Pa','FontSize',fontsize,'BoxOpacity',0);
 B = insertText(B,(pos+[0,(gap_v+length(row))*2]),'c) P=15 Pa','FontSize',fontsize,'BoxOpacity',0);
 
 
-%% INSERT LEGEND
-L1 = imread('./Tlegend1.png');
-L1 = imread('./Tlegend2.png');
-
-% RANGE OF LEGEND
-lrow = 840:1100;
-lcol = 430:1800;
-
-% SET START POSITION
-n0 = 320;       % horizontal pos
-m0 = 200;       % vertical pos
-
-% INSERT LEFT LEGEND
-n = (1:length(lcol)) + (gap_h + n0) ;   % 20 is small adjustment
-m = (1:length(lrow)) + (3*gap_v + 3*length(row) + m0);
-
-B(m,n,1:3) = L1(lrow,lcol,1:3);
 
 
-% INSERT RIGHT LEGEND
-n = (1:length(lcol)) + (2*gap_h + length(col)) + n0 ; % 20 is small adjustment
-m = (1:length(lrow)) + (3*gap_v + 3*length(row) + m0);
-
-B(m,n,1:3) = L1(lrow,lcol,1:3);
-
-
-%% INSERT AXIS
-XZ = imread('./axis.png');
-[arow, acol, ~] = size(XZ);
-
-% INSERT AXIS TO THE LEFT
-% horizontal pos
-n0 = -50;
-
-n = (1:acol) + (gap_h + n0);
-m = (1:arow) + (3*gap_v + 3*length(row) + m0);
-
-B(m,n,1:3) = XZ(1:end,1:end,1:3);
-
-% INSERT AXIS TO THE RIGHT
-% horizontal pos
-n0 = -1*acol + 30;
-
-n = (1:acol) + (2*gap_h + 2*length(col)) + n0;
-m = (1:arow) + (3*gap_v + 3*length(row) + m0);
-
-B(m,n,1:3) = XZ(1:end,1:end,1:3);
-
-
-figure
-imshow(XZ)
-
-imwrite(B,'test.PNG');
-figure
-imshow(B)
