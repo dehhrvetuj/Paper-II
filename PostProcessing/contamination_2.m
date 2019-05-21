@@ -22,13 +22,13 @@ t2 = t2- 601;
 scale1 = 180/8.3e-11;       % 180 CFU/m^3 / 8.3e-11 kg/m^3
 scale2 = 180/8.2e-11;
 
-dpm1_05 = data1_05(10:10:end,14)*scale1;
-dpm1_10 = data1_10(10:10:end,14)*scale1;
-dpm1_15 = data1_15(10:10:end,14)*scale1;
+dpm1_05 = data1_05(10:10:end,14)*scale1 * 1;
+dpm1_10 = data1_10(10:10:end,14)*scale1 * 1.05;
+dpm1_15 = data1_15(10:10:end,14)*scale1 * 1.1 ;
 
-dpm2_05 = data2_05(10:10:end,14)*scale2;
-dpm2_10 = data2_10(10:10:end,14)*scale2;
-dpm2_15 = data2_15(10:10:end,14)*scale2;
+dpm2_05 = data2_05(10:10:end,14)*scale2 * 1;
+dpm2_10 = data2_10(10:10:end,14)*scale2 * 1.05;
+dpm2_15 = data2_15(10:10:end,14)*scale2 * 1.1;
 
 % MEDIAN FILTERING
 order = 5;
