@@ -87,7 +87,8 @@ ylabel('\DeltaP [Pa]','FontSize',fontsize-1,'FontWeight','bold','Color','k');
 
 % SET X AND Y AXIS LIMITS AND MAJOR TICKS
 % axis([-1 21 -0.2 5.2])
-set(gca,'XLim',[-1 21],'XTick',0:5:20);
+% set(gca,'XLim',[-1 21],'XTick',0:5:20);
+set(gca,'XLim',[0 20],'XTick',0:5:20);
 set(gca,'YLim',[-0.2 5.2],'YTick',[0 1 2 3 4 5]);
 % set(gca,'XTickLabel', {'0','1','2','3','4','5'});
 % set(gca,'YTickLabel', {'0','0.5','1.0','1.5','2.0','2.5'});
@@ -99,7 +100,7 @@ axs.XRuler.MinorTick = 0:1:20;
 % axs.YRuler.MinorTick = 0:0.2:5; 
 
 % SET LEGEND
-[leg,objects] = legend({'B-5 (summer)','C-5 (summer)','D-5 (summer)', ... 
+[leg,objects] = legend({'Case B (summer)','Case C (summer)','Case D (summer)', ... 
     'A-5 (winter)','B-5 (winter)','C-5 (winter)','D-5 (winter)'},'Location','north','FontSize',fontsize-5);
 set(leg,'LineWidth',(linewidth/2-0.1));
 
@@ -113,7 +114,7 @@ for i=1:3
     objects(i*2+3-1).XData(2) = 0.345;
 end
 
-leg.Position(3) = 0.275;
+leg.Position(3) = 0.35;
 
 % SET GRID LINE PROPERTIES
 grid on

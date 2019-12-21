@@ -33,10 +33,10 @@ p2_B = data2_B(I,3)*-1-0.1069;
 p2_C = data2_C(I,3)*-1-0.1069;
 p2_D = data2_D(I,3)*-1-0.1069;
 
-p1_A = p1_A*0+1.9734;
-p1_B = p1_B-p1_B(1)+1.9734;
-p1_C = p1_C-p1_C(1)+1.9734;
-p1_D = (p1_D-p1_D(1))*1.03+1.9734;
+% p1_A = p1_A*0+1.9734;
+% p1_B = p1_B-p1_B(1)+1.9734;
+% p1_C = p1_C-p1_C(1)+1.9734;
+% p1_D = (p1_D-p1_D(1))*1.03+1.9734;
 
 % p1_A = data1_A(I,9);
 % p1_B = data1_B(I,9);
@@ -92,7 +92,7 @@ ylabel('OR exhaust flow [m^3/s]','FontSize',fontsize-2,'FontWeight','bold','Colo
 
 % SET X AND Y AXIS LIMITS AND MAJOR TICKS
 % axis([-1 21 -0.2 5.2])
-set(gca,'XLim',[-1 21],'XTick',0:5:20);
+set(gca,'XLim',[0 20],'XTick',0:5:20);
 set(gca,'YLim',[1.37 2.1],'YTick',1.5:0.5:2.5);
 % set(gca,'XTickLabel', {'0','1','2','3','4','5'});
 % set(gca,'YTickLabel', {'0','0.5','1.0','1.5','2.0','2.5'});
@@ -104,15 +104,21 @@ axs.XRuler.MinorTick = 0:1:20;
 axs.YRuler.MinorTick = 0:0.1:5; 
 
 % SET LEGEND
-[leg,objects] = legend({ 'B-5 (summer)','C-5 (summer)','D-5 (summer)', ... 
+[leg,objects] = legend({'Case B (summer)','Case C (summer)','Case D (summer)', ... 
     'A-5 (winter)','B-5 (winter)','C-5 (winter)','D-5 (winter)'},'Location','north','FontSize',fontsize-5);
 set(leg,'LineWidth',(linewidth/2-0.1));
+
+% for i=1:8
+%     objects(i).Position(1) = 0.385;
+%     objects(i*2+8-1).XData(2) = 0.345;
+% end
+
 for i=1:3
     objects(i).Position(1) = 0.385;
     objects(i*2+3-1).XData(2) = 0.345;
 end
 
-leg.Position(3) = 0.275;
+leg.Position(3) = 0.35;
 
 % SET GRID LINE PROPERTIES
 grid on
